@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <section>
+        <nav>
+            <h1>
+                WEBSITE NAME
+            </h1>
+    
+            <div class="links">
+                <a href="/index.html">HOME</a>
+                <!-- <a href="">PRODUCTS</a> -->
+                
+            </div>
+        </nav>
+        <div class="forms">  
+            <div class="register" id="reg">
+                <div class="form regis">
+                    <h2>REGISTER FORM</h2>
+                    <div class="field">
+                        <label for="username">USERNAME</label>
+                        <input type="text" name="username" id="username" placeholder="USERNAME">
+                    </div>
+                    <div class="field">
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="email" placeholder="EMAIL">
+                    </div>
+                    <div class="field">
+                        <label for="password">PASSWORD</label>
+                        <input type="password" name="password" id="password" placeholder="PASSWORD">
+                    </div>
+        
+                    
+                    <p  id="register">Already have an Account?</p>
+        
+                    <button onclick="register(FormData)">REGISTER</button>
+                </div>
+            </div>
+            <div class="login" id="log">
+                <div class="form logg">
+                    <h2>LOGIN FORM</h2>
+                    
+                    <div class="field">
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="useremail" placeholder="EMAIL">
+                    </div>
+                    <div class="field">
+                        <label for="password">PASSWORD</label>
+                        <input type="password" name="password" id="userpassword" placeholder="PASSWORD">
+                    </div>
+        
+                    
+                    <p id="login">Do not Have an Account?</p>
+        
+                    <button onclick="login()">LOGIN</button>
+                </div>
+            </div>
+        </div>
+           
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/assets/javascript.js">
+
+        
+
+    </script>
+</body>
+</html>
