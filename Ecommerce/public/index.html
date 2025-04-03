@@ -8,121 +8,121 @@
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 
-<body>
-    <nav>
+<body id="home">
+    <nav id="nav">
         <h1>
-            WEBSITE NAME
+           WEBSITE NAME
         </h1>
 
+        <img width="40px" id="menu" style="margin: 10px;" src="/assets/images/icons/menu.png" alt="">
+
         <div class="links">
-            <a href="/index.html">HOME</a>
+            <a href="/index.html" id="home">HOME</a>
             <a href="/addproducts.html">PRODUCTS</a>
+            <a href="/allproduct.html">ALL PRODUCTS</a>
             <button href="" onclick="logout()">LOGOUT</button>
         </div>
     </nav>
     <div class="carousel ">
-        <div class="carousel-info">
-            <h1 class="text-animation">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, consectetur
-                adipisicing elit. </h1>
-        </div>
-        <div class="black"></div>
         <div class="carousel-child">
             <div class="product1 hero text-animation">
+                <div class="carousel-info">
+                    <h1 class="carousel-text-animation">
+                        Time Shows Condition
+                    </h1>
+                    <h2 class="carousel-text-animation">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem,
+                        consectetur
+                        adipisicing elit.ipsum dolor sit amet consectetur adipisicing elit. Lorem, consectetur
+                        adipisicing elit.
+                        </h1>
+                </div>
                 <div class="img-container">
-                    <img src="/assets/images/image13.jpg" alt="">
+                    <img src="/assets/images/clock-2113254_1920.jpg" alt="">
                 </div>
             </div>
-            <div class="product2 hero">
+            <div class="product2 hero ">
+                <div class="carousel-info">
+                    <h1 class="carousel-text-animation">
+                        money equals to time
+                    </h1>
+                    <h2 class='carousel-text-animation'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, consectetur
+                        adipisicing elit.ipsum dolor sit amet consectetur adipisicing elit. Lorem, consectetur
+                        adipisicing elit.
+                    </h2>
+                </div>
                 <div class="img-container">
-                    <img src="/assets/images/image19.jpg" alt="">
+                    <img src="/assets/images/wrist-watch-183143_1920.jpg" alt="">
                 </div>
             </div>
-            <div class="product3 hero">
-                <div class="img-container">
-                    <img src="/assets/images/image20.jpg" alt="">
+            <div class="product3 hero text-animation">
+                <div class="carousel-info">
+                    <h1 class="carousel-text-animation">
+                        feels the luxury
+                    </h1>
+                    <h2 class="carousel-text-animation">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem,
+                        consectetur
+                        adipisicing elit. ipsum dolor sit amet consectetur adipisicing elit. Lorem, consectetur
+                        adipisicing elit.
+                    </h2>
                 </div>
-            </div>
-            <div class="product4 hero">
-
                 <div class="img-container">
-                    <img src="/assets/images/image12.jpg" alt="">
+                    <img src="/assets/images/clock-1625703_1920.jpg" alt="">
                 </div>
             </div>
         </div>
 
 
     </div>
-    <section id="categories">
-        <div class="categories">
+    <div class="forms registerForm">
+        <div class="register">
+            <form id="register" class='active-form'>
+                <h2>REGISTER FORM</h2>
+                <p>Join us today for a seamless shopping experience! <br> Sign up now to enjoy exclusive deals and a
+                    personalized shopping journey.</p>
+                <div class="fields">
+                    <div class="field">
+                        <label for="username">USERNAME</label>
+                        <input type="text" name="username" id="username" placeholder="Username">
+                    </div>
+                    <div class="field">
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="field">
+                        <label for="password">PASSWORD</label>
+                        <input type="password" name="password" id="password" placeholder="Password">
+                    </div>
+                </div>
 
-            <div class="category1 category">
-                <div class="img-category">
-                    <img src="/assets/images/electronics.jpg" alt="">
-                </div>
-                <p>Category 1</p>
-            </div>
-            <div class="category1 category">
-                <div class="img-category">
-                    <img src="/assets/images/groceries.jpg" alt="">
-                </div>
-                <p>Category 1</p>
-            </div>
-            <div class="category1 category">
-                <div class="img-category">
-                    <img src="/assets/images/Market basket -5.jpg" alt="">
-                </div>
-                <p>Category 1</p>
-            </div>
-            <div class="category1 category">
-                <div class="img-category">
-                    <img src="/assets/images/place-flying-sunset-sky.jpg" alt="">
-                </div>
-                <p>Category 1</p>
-            </div>
+                <button onclick="register(FormData)">REGISTER</button>
+                <span id="haveAccount">Already have an Account?</span>
+            </form>
         </div>
-    </section>
+         
+    </div>
+
+    <div class="forms loginForm">
+        <div class="login" id="log">
+            <form id="login" class='active-form'>
+                <h2>LOGIN FORM</h2>
+                <p>Welcome back! Log in to continue your shopping journey .</p>
+                <div class="fields text">
+                    <div class="field">
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="useremail" placeholder="EMAIL">
+                    </div>
+                    <div class="field">
+                        <label for="password">PASSWORD</label>
+                        <input type="password" name="password" id="userpassword" placeholder="PASSWORD">
+                    </div>
+                </div>                
+                <button type="submit">LOGIN</button>
+                <a href="">Do not Have an Account?</a>
+            </form>
+        </div>
+    </div>
 
 
-    <section id="product">
-        <div class="product-container">
-            <div class="product">
-                <h1>
-                    PRODUCTS
-                </h1>
-                <span></span>
-                <h1>
-                    PRODUCTS
-                </h1>
-                <span></span>
-                <h1>
-                    PRODUCTS
-                </h1>
-                <span></span>
-                <h1>
-                    PRODUCTS
-                </h1>
-                <span></span>
-                <h1>
-                    PRODUCTS
-                </h1>
-                <span></span>
-                <h1>
-                    PRODUCTS
-                </h1>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="products">
-            </div>
-            <div class="frame">
-                <div class="close" >
-                    <p id="close">Close</p>
-                </div>  
-                <iframe src="product.html" scrolling="no"  frameborder="0">
-                </iframe>
-            </div>
-        </div>
-    </section>
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -45,49 +45,98 @@ if (carousel) {
 
 
 
-document.addEventListener('click', (event) => {
-    const login = document.getElementById('register')
-    const register = document.getElementById('login')
-    const reg = document.getElementById('reg')
-    const log = document.getElementById('log')
+// anchor handling in the form
+document.addEventListener('click',(event)=>{
+    const haveAccount = document.getElementById('haveAccount');
+    const Register = document.getElementById('register');
+    const Login = document.getElementsByClassName('loginForm')[0];
 
-
-
-    if (event.target === login) {
-        reg.style.display = 'none'
-        log.classList.add('active')
-        log.style.display = 'block'
+    if(event.target == haveAccount){
+        console.log("login",Login)
+        Register.classList.add('deactive-form')
+        Login.style.display = 'block'
     }
-    if (event.target === register) {
-        log.style.display = 'none'
-        reg.classList.add('active')
-        reg.style.display = 'block'
-    }
-
-
-    /* card click */
-    const card = document.getElementsByClassName('products')[0]?.['children'] || null;
-    const products = document.getElementsByClassName('products')[0]
-    const frame = document.getElementsByClassName('frame')[0];
-    const close = document.getElementById('close');
-
-    if (card) {
-        for (let i = 0; i < card.length; i++) {
-            if (event.target === card[i] || card[i].contains(event.target)) {
-                console.log(card[i])
-                frame.style.display = "block"
-                products.classList.add('blur')
-            }
-        }
-        if (event.target === close) {
-            frame.style.display = "none";
-            products.classList.remove('blur')
-        }
-
-    }
-
-
 })
+
+// login form
+if(document.contains(document.getElementById('login'))){
+document.getElementById('login').addEventListener('submit',(event)=>{
+
+    try {
+        event.preventDefault();
+
+        const forms = document.getElementsByClassName('forms');
+        const LoginForm = document.getElementById('login');
+
+        const formdata = new FormData(event.target);
+
+        const email = formdata.get('email');
+        const password = formdata.get('password');
+
+        const data = new Object({
+            email, password
+        })
+
+        axios.post('http://localhost:8000/api/login',data, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.status == 200) {
+                    alert(res.data.message)
+                    setTimeout(() => {
+                        window.location.href = "/index.html"
+                        forms[0].style.display = 'none'
+                        forms[1].style.display = 'none'
+                    }, 800)
+                }else{
+                    alert(res.data.message)
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    } catch (error) {
+        console.log("error while login");
+        throw error;
+    }
+
+})}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+    try {
+
+        const nav = document.getElementById('nav') || null;
+        const forms = document.getElementsByClassName('forms') || null;
+
+
+        console.log("nav",nav)
+
+        await axios.post('http://localhost:8000/api/authenticated',{
+            withCredentials: true
+        })
+        .then((res)=>{
+            console.log(res.data,forms)
+            if(res.data.status == 200 && forms.length > 0 ){
+                nav.style.display = "flex"
+                forms[0].style.display = 'none'
+                forms[1].style.display = 'none'
+            }
+        })
+        .catch((error)=>{
+            console.log(error)
+            throw error;
+        })
+    } catch (error) {
+        console.log("error in user already authenticated",error);
+        throw error;
+    }
+    
+})
+
+
+
 
 
 function register() {
@@ -216,7 +265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (res.data.status == 400) {
                     alert(res.data.message)
                     setTimeout(() => {
-                        window.location.href = "/login.html"
+                        window.location.href = "/index.html"
                     }, 1000)
                 }
             })
@@ -311,7 +360,7 @@ function logout() {
                 console.log(res.data)
                 if (res.data.status == 200) {
                     alert(res.data.message)
-                    window.location.href = '/login.html'
+                    window.location.href = '/index.html'
                 }
             })
             .catch((error) => {
@@ -326,5 +375,21 @@ function logout() {
 
 
 
+/* document.addEventListener('click',(event)=>{
+    const menu = document.getElementById('menu')
+    const links = document.getElementsByClassName('links')[0];
+    const windowSize = window.innerWidth;
+    if(event.target != links && !links.contains(event.target) && windowSize <= 748){
+        console.log("hide menu")
+        console.log(window.innerWidth)
+        links.style.display = "none";
+        menu.style.display = "block"
+    }
+    if(event.target == menu){
+        links.classList.add('text-animation');
+        links.style.display = "flex";
+        menu.style.display = 'none'
+    }
+}) */
 
 

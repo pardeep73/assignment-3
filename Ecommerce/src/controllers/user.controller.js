@@ -45,7 +45,7 @@ export const Login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        console.log(req.body)
+        console.log("login data",req.body)
 
         console.log(email,password)
 
@@ -110,6 +110,28 @@ export const Logout = async(req,res) =>{
         })
     }
 }
+export const authenticated = async(req,res) =>{
+    try {
+        const id = req.id;
+
+        if(!id){
+            return res.json({
+                status: 400,
+                message: "User not Authenticated"
+            })
+        }
+        return res.json({
+            status: 200,
+            message: "User is Valid"
+        })
+    } catch (error) {
+        return res.json({
+            status: 500,
+            message: "internal Server Error"
+        })
+    }
+}
+
 
 export const BuyProduct = async(req,res) =>{
     try {
