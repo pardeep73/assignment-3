@@ -30,7 +30,7 @@ nav {
     box-sizing: border-box;
     font-size: clamp(16px, 1.1vw, 18px);
     color: black;
-
+    background-color: rgb(243, 243, 243);
 }
 
 nav img {
@@ -50,6 +50,7 @@ nav img {
     font-size: clamp(16px, 1.1vw, 18px);
     background-color: transparent;
     color: white;
+
 }
 
 #nav #home{
@@ -255,7 +256,8 @@ nav img {
     /* border-radius: 12px; */
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.1s ease-in-out;
+    border-radius: 10px;
 }
 
 .card:hover {
@@ -345,7 +347,7 @@ input:focus {
     grid-template-rows: auto;
     gap: 1rem;
     padding: 1rem;
-    background-color: rgb(243, 243, 243);
+    background: linear-gradient(to right,rgb(233, 233, 233),rgb(238, 238, 238));
 }
 
 /*Login and Register forms */
