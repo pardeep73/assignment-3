@@ -7,6 +7,6 @@ const product = Router();
 
 product.route('/addproduct').post(authenticate,upload.array('images',5),addproduct)
 product.route('/getproducts').post(authenticate,getproducts)
-product.route('/singleproduct').post(authenticate,singleproduct)
+product.route('/singleproduct/:id').post(authenticate,singleproduct)
 
 export default product;

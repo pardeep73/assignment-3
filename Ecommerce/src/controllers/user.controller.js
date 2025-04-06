@@ -110,6 +110,8 @@ export const Logout = async(req,res) =>{
         })
     }
 }
+
+
 export const authenticated = async(req,res) =>{
     try {
         const id = req.id;
@@ -135,7 +137,10 @@ export const authenticated = async(req,res) =>{
 
 export const BuyProduct = async(req,res) =>{
     try {
-        const productId = req.params;
+        const productId = req.params.id;
+
+        console.log('req.params',productId);
+
         const Userid = req.id;
 
         if(!productId){
@@ -171,6 +176,7 @@ export const BuyProduct = async(req,res) =>{
 
 
     } catch (error) {
+        console.log(error)
         return res.json({
             status: 500,
             message: "internal Server Error"

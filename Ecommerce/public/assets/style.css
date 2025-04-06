@@ -53,11 +53,6 @@ nav img {
 
 }
 
-#nav #home{
-    text-decoration: underline;
-    font-weight: 600;
-    scale: 1.1;
-}
 
 .links {
     display: flex;
@@ -202,9 +197,10 @@ nav img {
 
 /* products */
 
-#product {
-    height: calc(100vh - 70.4px);
+section {
+    height: calc(100vh - 49.4px);
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 .product {
@@ -645,3 +641,21 @@ input:focus {
     }
 }
 
+
+.fade {
+    animation-name: fade;
+    animation-duration: 0.5s;
+}
+
+@keyframes fade {
+    0%{
+        transform: translateY(20%);
+        scale: 1.1;
+        opacity: 0.2;
+    }
+    100%{
+        transform: translateY(0%);
+        scale: 1;
+        opacity: 1;
+    }
+}

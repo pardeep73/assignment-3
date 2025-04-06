@@ -46,93 +46,139 @@ if (carousel) {
 
 
 // anchor handling in the form
-document.addEventListener('click',(event)=>{
+document.addEventListener('click', (event) => {
     const haveAccount = document.getElementById('haveAccount');
     const Register = document.getElementById('register');
     const Login = document.getElementsByClassName('loginForm')[0];
 
-    if(event.target == haveAccount){
-        console.log("login",Login)
+    if (event.target == haveAccount) {
+        console.log("login", Login)
         Register.classList.add('deactive-form')
         Login.style.display = 'block'
     }
 })
 
 // login form
-if(document.contains(document.getElementById('login'))){
-document.getElementById('login').addEventListener('submit',(event)=>{
+if (document.contains(document.getElementById('login'))) {
+    document.getElementById('login').addEventListener('submit', (event) => {
 
-    try {
-        event.preventDefault();
+        try {
+            event.preventDefault();
 
-        const forms = document.getElementsByClassName('forms');
-        const LoginForm = document.getElementById('login');
+            const forms = document.getElementsByClassName('forms');
+            const LoginForm = document.getElementById('login');
 
-        const formdata = new FormData(event.target);
+            const formdata = new FormData(event.target);
 
-        const email = formdata.get('email');
-        const password = formdata.get('password');
+            const email = formdata.get('email');
+            const password = formdata.get('password');
 
-        const data = new Object({
-            email, password
-        })
-
-        axios.post('http://localhost:8000/api/login',data, {
-            withCredentials: true,
-        })
-            .then((res) => {
-                console.log(res.data)
-                if (res.data.status == 200) {
-                    alert(res.data.message)
-                    setTimeout(() => {
-                        window.location.href = "/index.html"
-                        forms[0].style.display = 'none'
-                        forms[1].style.display = 'none'
-                    }, 800)
-                }else{
-                    alert(res.data.message)
-                }
-            })
-            .catch((error) => {
-                console.log(error)
+            const data = new Object({
+                email, password
             })
 
-    } catch (error) {
-        console.log("error while login");
-        throw error;
-    }
+            axios.post('http://localhost:8000/api/login', data, {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log(res.data)
+                    if (res.data.status == 200) {
+                        alert(res.data.message)
+                        setTimeout(() => {
+                            window.location.href = "/index.html"
+                            forms[0].style.display = 'none'
+                            forms[1].style.display = 'none'
+                        }, 800)
+                    } else {
+                        alert(res.data.message)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
 
-})}
+        } catch (error) {
+            console.log("error while login");
+            throw error;
+        }
 
-document.addEventListener('DOMContentLoaded',async()=>{
+    })
+}
+if (document.contains(document.getElementById('register'))) {
+    document.getElementById('register').addEventListener('submit', (event) => {
+
+        try {
+            event.preventDefault();
+
+            const Register = document.getElementById('register');
+            const Login = document.getElementsByClassName('loginForm')[0];
+
+            const formdata = new FormData(event.target);
+
+            const username = formdata.get('username');
+            const email = formdata.get('email');
+            const password = formdata.get('password');
+
+            const data = new Object({
+                username, email, password
+            })
+
+            axios.post('http://localhost:8000/api/register', data, {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log(res.data)
+                    if (res.data.status == 200) {
+                        alert(res.data.message)
+                        setTimeout(() => {
+                            Register.classList.add('deactive-form')
+                            Login.style.display = 'block'
+                        }, 800)
+                    } else {
+                        alert(res.data.message)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+        } catch (error) {
+            console.log("error while login");
+            throw error;
+        }
+
+    })
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     try {
 
         const nav = document.getElementById('nav') || null;
         const forms = document.getElementsByClassName('forms') || null;
 
 
-        console.log("nav",nav)
+        console.log("nav", nav)
 
-        await axios.post('http://localhost:8000/api/authenticated',{
+        await axios.post('http://localhost:8000/api/authenticated', {
             withCredentials: true
         })
-        .then((res)=>{
-            console.log(res.data,forms)
-            if(res.data.status == 200 && forms.length > 0 ){
-                nav.style.display = "flex"
-                forms[0].style.display = 'none'
-                forms[1].style.display = 'none'
-            }
-        })
-        .catch((error)=>{
-            console.log(error)
-            throw error;
-        })
+            .then((res) => {
+                console.log(res.data, forms)
+                if (res.data.status == 200 && forms.length > 0) {
+                    nav.style.display = "flex"
+                    forms[0].style.display = 'none'
+                    forms[1].style.display = 'none'
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                throw error;
+            })
     } catch (error) {
-        console.log("error in user already authenticated",error);
+        console.log("error in user already authenticated", error);
         throw error;
     }
-    
+
 })
 
 
@@ -143,6 +189,8 @@ function register() {
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+   
+
 
     const data = new Object({
         username, email, password
@@ -156,10 +204,11 @@ function register() {
             if (res.data.status == 200) {
                 alert(res.data.message)
                 setTimeout(() => {
-                    window.location.href = "/login.html"
+                    Register.classList.add('deactive-form')
+                    Login.style.display = 'block'
                 }, 2000)
             }
-            else{
+            else {
                 alert(res.data.message)
             }
         })
@@ -168,54 +217,26 @@ function register() {
         })
 }
 
-function login() {
-    const email = document.getElementById('useremail').value;
-    const password = document.getElementById('userpassword').value;
 
-    const data = new Object({
-        email, password
-    })
-
-
-
-    axios.post('http://localhost:8000/api/login', data, {
-        withCredentials: true,
-    })
-        .then((res) => {
-            console.log(res.data)
-            if (res.data.status == 200) {
-                alert(res.data.message)
-                setTimeout(() => {
-                    window.location.href = "/index.html"
-                }, 2000)
-            }else{
-                alert(res.data.message)
-            }
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-}
-
-if(document.contains(document?.getElementById('reg'))){
-document?.getElementById('reg').addEventListener('submit',async function (event){ 
+if (document.contains(document?.getElementById('reg'))) {
+    document?.getElementById('reg').addEventListener('submit', async function (event) {
         try {
-    
+
             event.preventDefault();
-    
+
             const formdata = new FormData(this)
-    
+
             await axios.post('http://localhost:8000/api/addproduct', formdata, {
                 withCredentials: true
             })
-            .then((res)=>{
-                console.log(res.data)
-            })
-            .catch((error)=>{
-                console.log(error)
-                throw error;
-            })
-    
+                .then((res) => {
+                    console.log(res.data)
+                })
+                .catch((error) => {
+                    console.log(error)
+                    throw error;
+                })
+
         } catch (error) {
             console.log("error while adding the product", error)
             throw error;
@@ -249,7 +270,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <h1>${product.name}</h1>
                             <div class="price">
                                 <span>${product.discount}%</span>
-                                <h2>$${product.price}</h2>
+                                <h2>&#8377;${product.price}</h2>
                             </div>
                         </div>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non repellat magnam esse totam rem
@@ -375,21 +396,299 @@ function logout() {
 
 
 
-/* document.addEventListener('click',(event)=>{
+document.addEventListener('click', (event) => {
     const menu = document.getElementById('menu')
     const links = document.getElementsByClassName('links')[0];
     const windowSize = window.innerWidth;
-    if(event.target != links && !links.contains(event.target) && windowSize <= 748){
+    if (event.target != links && !links.contains(event.target) && windowSize <= 748) {
         console.log("hide menu")
         console.log(window.innerWidth)
         links.style.display = "none";
         menu.style.display = "block"
     }
-    if(event.target == menu){
+    if (event.target == menu) {
         links.classList.add('text-animation');
         links.style.display = "flex";
         menu.style.display = 'none'
     }
-}) */
+})
 
+
+// card element navigation
+if(document.contains(document.getElementById('product'))){
+document.addEventListener('click',(event)=>{
+    const card = event.target.closest('.card');
+    const cardId = card.getAttribute('id');   
+    if(card.contains(event.target)){
+        window.location.href = `/product.html?id=${cardId}`
+    }
+})
+}
+
+document.addEventListener('scroll',(event)=>{
+
+    console.log('user scrolling');
+    const rect = element.getBoundingClientRect();
+    
+    let observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade');
+          }
+        });
+      });
+      
+})
+
+
+function buy(){
+    try {
+        const id = new URLSearchParams(window.location.search).get('id');
+        console.log(id);
+        axios.post(`http://localhost:8000/api/buy/${id}`)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.status == 200) {
+                    alert(res.data.message)
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                throw error;
+            })
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+function overview(){
+    try 
+    {
+        const container = document.getElementById('d-product');
+        console.log("container",container);
+
+        const id = new URLSearchParams(window.location.search).get('id');
+        axios.post(`http://localhost:8000/api/singleproduct/${id}`,)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.status == 200) {
+                    console.log("images",res.data.data)
+                    const payload = res.data.data;
+                    const specification = payload.specification;
+                    /* alert(res.data.message) */
+                    container.innerHTML = `
+                    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                    <img src="http://localhost:8000/temp/${payload.images[3]}" "
+                        alt="Two each of gray, white, and black shirts laying flat."
+                        class="hidden size-full rounded-lg object-cover lg:block animation">
+                    <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8" >
+                        <img src="http://localhost:8000/temp/${payload.images[1]}"
+                            alt="Model wearing plain black basic tee."
+                            class="aspect-3/2 w-full rounded-lg object-cover fade">
+                        <img src="http://localhost:8000/temp/${payload.images[2]}" alt="Model wearing plain gray basic tee."
+                            class="aspect-3/2 w-full rounded-lg object-cover fade">
+                    </div>
+                    <img src="http://localhost:8000/temp/${payload.images[0]}" alt="Model wearing plain white basic tee."
+                        class="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto fade" style="max-width: 400px; justify-self:center; object-fit:contain; max-height:600px;">
+                </div>
+
+                <div class="product-card ">
+                    <div class="features flex justify-center place-items-center " style="margin: 10px;">
+                        <div class="bg-white carousel-animation">
+                            <div
+                                class="mx-auto mt-10  grid grid-cols-1 items-center bg-gray-100 rounded-md lg:mx-32 md:px-0 flex justify-center place-items-center">
+                                <div class='p-10'>
+                                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Technical
+                                        Specifications</h2>
+                                    <p class="mt-4 text-gray-500 text-xl" style="padding: 10px 0px;">The walnut wood
+                                        card
+                                        tray is
+                                        precision milled to perfectly fit a stack of Focus cards. The powder coated
+                                        steel
+                                        divider separates active cards from new ones, or can be used to archive
+                                        important
+                                        task
+                                        lists.</p>
+
+                                    <dl
+                                        class="mt-6 grid grid-cols-1 gap-x-2 gap-y-10 sm:grid-cols-2 sm:gap-y-4 lg:gap-x-2">
+                                        <div class="border-t border-gray-300 pt-4">
+                                            <dt class="font-medium text-xl text-gray-900">Owner</dt>
+                                            <dd class="mt-2 text-sm text-gray-500">${specification.owner}</dd>
+                                        </div>
+                                        <div class="border-t border-gray-300 pt-4">
+                                            <dt class="font-medium text-xl text-gray-900">Material</dt>
+                                            <dd class="mt-2 text-sm text-gray-500">${specification.material}</dd>
+                                        </div>
+                                        <div class="border-t border-gray-300 pt-4">
+                                            <dt class="font-medium text-xl text-gray-900">Movement</dt>
+                                            <dd class="mt-2 text-sm text-gray-500">${specification.movement}
+                                            </dd>
+                                        </div>
+                                        <div class="border-t border-gray-300 pt-4">
+                                            <dt class="font-medium text-xl text-gray-900">Case-size</dt>
+                                            <dd class="mt-2 text-sm text-gray-500">${specification.caseSize}
+                                            </dd>
+                                        </div>
+                                        <div class="border-t border-gray-300 pt-4">
+                                            <dt class="font-medium text-xl text-gray-900">Resistance</dt>
+                                            <dd class="mt-2 text-sm text-gray-500">${specification.waterResistance}
+                                            </dd>
+                                        </div>
+                                        <div class="border-t border-gray-300 pt-4">
+                                            <dt class="font-medium text-xl text-gray-900">Id</dt>
+                                            <dd class="mt-2 text-sm text-gray-500">${specification._id}</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="products">
+                    </div>
+
+                </div>
+                <!-- Product info -->
+                <div 
+                    class="px-4 mx-2 pt-10 pb-16 sm:px-6 lg:grid lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-36 lg:pt-16 lg:pb-24">
+                    <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Description</h1>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="mt-4 lg:row-span-3 lg:mt-0">
+                        <h2 class="sr-only">Product information</h2>
+                        <p class=" tracking-tight text-gray-500">${specification.brand}</p>
+                        <p class="text-xl tracking-tight text-black-500">${payload.name}</p>
+                        <div class="flex justify-start place-items-center ">
+                            <p class="text-xl tracking-tight text-red-500 mr-4">${payload.discount}</p>
+                            <p class="text-3xl tracking-tight text-gray-900">&#8377;${payload.price}</p>
+                        </div>
+
+                        <!-- Reviews -->
+                        <div class="mt-6">
+                            <h3 class="sr-only">Reviews</h3>
+                            <div class="flex items-center">
+                                <div class="flex items-center">
+                                    <!-- Active: "text-gray-900", Default: "text-gray-200" -->
+                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd"
+                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd"
+                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd"
+                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd"
+                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="size-5 shrink-0 text-gray-200" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd"
+                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <p class="sr-only">4 out of 5 stars</p>
+                                <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117
+                                    reviews</a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <button
+                            class="mt-10 flex w-full items-center justify-center rounded-md border border-indigo-600 bg-transparent px-8 py-3 text-base font-medium text-indigo-600 hover:text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Add
+                            to Wishlist</button>
+                        <button onclick="buy()"
+                            class="mt-2 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Buy
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pr-8 lg:pb-16">
+                        <!-- Description and details -->
+                        <div>
+                            <h3 class="sr-only">Description</h3>
+
+                            <div class="space-y-6">
+                                <p class="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your
+                                    vibrant personality with three grayscale options. Feeling adventurous? Put on a
+                                    heather
+                                    gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;.
+                                    Need
+                                    to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-10">
+                            <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+
+                            <div class="mt-4">
+                                <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                                    <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn
+                                            locally</span>
+                                    </li>
+                                    <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary
+                                            colors</span></li>
+                                    <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp;
+                                            pre-shrunk</span>
+                                    </li>
+                                    <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-10">
+                            <h2 class="text-sm font-medium text-gray-900">Details</h2>
+
+                            <div class="mt-4 space-y-6">
+                                <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two
+                                    heather
+                                    gray Basic Tees. Sign up for our subscription service and be the first to get new,
+                                    exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `
+
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                throw error;
+            })
+    } catch (error) {
+        console.log("error in the overview",error)
+        throw error;
+    }
+}
+document.addEventListener('DOMContentLoaded',()=>{
+    try {
+        overview();
+    } catch (error) {
+        throw error;
+    }
+})
 

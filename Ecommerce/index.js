@@ -8,6 +8,8 @@ import { dirname } from "path";
 import path from "path";
 import router from "./src/routes/user.routes.js";
 import product from "./src/routes/product.routes.js";
+import { addproduct } from "./src/controllers/product.controller.js";
+/* import { getspec, specification } from "./src/controllers/product.controller.js"; */
 
 
 
@@ -35,6 +37,10 @@ app.use(express.static(path.join(__dirname,'public')))
 app.get('/', (req, res) => {
     return res.sendFile(path.join(__dirname,"public","login.html"))
 })
+
+/* specification(); */
+/* getspec(); */
+/* addproduct(); */
 
 ConnectDB()
     .then(() => {
