@@ -479,7 +479,7 @@ function overview(){
                     /* alert(res.data.message) */
                     container.innerHTML = `
                     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                    <img src="http://localhost:8000/temp/${payload.images[3]}" "
+                    <img src="http://localhost:8000/temp/${payload.images[3]}" style="object-fit:contain; align-self:center; height:auto; border-radius:10px;"
                         alt="Two each of gray, white, and black shirts laying flat."
                         class="hidden size-full rounded-lg object-cover lg:block animation">
                     <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8" >
@@ -537,7 +537,7 @@ function overview(){
                                             </dd>
                                         </div>
                                         <div class="border-t border-gray-300 pt-4">
-                                            <dt class="font-medium text-xl text-gray-900">Id</dt>
+                                            <dt class="font-medium text-xl text-gray-900">ID</dt>
                                             <dd class="mt-2 text-sm text-gray-500">${specification._id}</dd>
                                         </div>
                                     </dl>
@@ -568,47 +568,7 @@ function overview(){
                         </div>
 
                         <!-- Reviews -->
-                        <div class="mt-6">
-                            <h3 class="sr-only">Reviews</h3>
-                            <div class="flex items-center">
-                                <div class="flex items-center">
-                                    <!-- Active: "text-gray-900", Default: "text-gray-200" -->
-                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
-                                        aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
-                                        aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
-                                        aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <svg class="size-5 shrink-0 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
-                                        aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <svg class="size-5 shrink-0 text-gray-200" viewBox="0 0 20 20" fill="currentColor"
-                                        aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <p class="sr-only">4 out of 5 stars</p>
-                                <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117
-                                    reviews</a>
-                            </div>
-                        </div>
+                        
 
 
 
@@ -636,43 +596,13 @@ function overview(){
                                     heather
                                     gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;.
                                     Need
-                                    to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+                                    to add an extra pop of color to your outfit? Our white tee has you covered.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam dolor ex necessitatibus facere praesentium perspiciatis quaerat nam ducimus a soluta. Aperiam quod voluptate obcaecati tempora eligendi in a, labore hic minus, sint provident ullam sunt mollitia doloribus iure nesciunt explicabo sapiente, autem nulla quibusdam maxime consequuntur. Possimus, reprehenderit similique, dolorem libero voluptatum maxime impedit nostrum illo modi aliquid, animi assumenda error. Unde alias eum praesentium, vel atque minus voluptatem, magnam vitae, officia soluta laborum suscipit nihil doloribus? Vel, non fugit eveniet cumque laudantium sit earum qui vero hic sapiente, modi dicta praesentium quidem mollitia laborum quo nobis exercitationem sint explicabo ullam,   </p>
                             </div>
                         </div>
 
-                        <div class="mt-10">
-                            <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-
-                            <div class="mt-4">
-                                <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-                                    <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn
-                                            locally</span>
-                                    </li>
-                                    <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary
-                                            colors</span></li>
-                                    <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp;
-                                            pre-shrunk</span>
-                                    </li>
-                                    <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="mt-10">
-                            <h2 class="text-sm font-medium text-gray-900">Details</h2>
-
-                            <div class="mt-4 space-y-6">
-                                <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two
-                                    heather
-                                    gray Basic Tees. Sign up for our subscription service and be the first to get new,
-                                    exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                       
                     `
-
+                    
                 }
             })
             .catch((error) => {
